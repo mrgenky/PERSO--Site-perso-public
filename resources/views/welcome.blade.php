@@ -7,6 +7,7 @@
     <title>Site de Mattéo Dufour</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="icon" type="image/png" href="{{asset('img/logo.PNG')}}" />
 </head>
 <body>
 <div id="app"></div>
