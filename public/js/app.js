@@ -2649,6 +2649,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DutView",
@@ -2658,10 +2683,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       accessDUTSection: localStorage.getItem('accessDUTSection'),
-      videos: null
+      videos: null,
+      comment: {
+        pseudo: '',
+        message: ''
+      },
+      info: ''
     };
   },
   methods: {
+    validate: function validate() {
+      this.info = "J'ai pas fait le back mdr";
+    },
     randomVideo: function randomVideo() {
       var rand = Math.floor(Math.random() * this.videos.length);
       var anchor = document.createElement("a");
@@ -21832,6 +21865,60 @@ var render = function () {
             [
               _c("v-icon", { attrs: { left: "" } }, [_vm._v("mdi-youtube")]),
               _vm._v("Vidéo au hasard"),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mt-8", staticStyle: { "max-width": "500px" } },
+            [
+              _c("h1", { staticClass: "mb-5" }, [
+                _vm._v("Livre d'or de l'élite"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-form",
+                [
+                  _c("v-text-field", {
+                    attrs: { label: "Pseudo", required: "" },
+                    model: {
+                      value: _vm.comment.pseudo,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.comment, "pseudo", $$v)
+                      },
+                      expression: "comment.pseudo",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: { label: "Message", required: "" },
+                    model: {
+                      value: _vm.comment.message,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.comment, "message", $$v)
+                      },
+                      expression: "comment.message",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary" },
+                      on: { click: _vm.validate },
+                    },
+                    [_vm._v("\n                Envoyer\n            ")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.info !== ""
+                ? _c("div", { staticClass: "mt-8" }, [
+                    _vm._v("\n            " + _vm._s(_vm.info) + "\n        "),
+                  ])
+                : _vm._e(),
             ],
             1
           ),

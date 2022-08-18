@@ -3,6 +3,31 @@
         <v-btn class="mb-3" color="primary" href="/iut/CoursDUTinfo.zip">Archive cours DUT (~300Mo)</v-btn>
         <v-btn class="mb-3" color="primary" :to="{ name:'DUTinfoVideos' }">Cours à distance</v-btn>
         <v-btn class="mb-3" @click="randomVideo()"><v-icon left>mdi-youtube</v-icon>Vidéo au hasard</v-btn>
+        <div style="max-width: 500px;" class="mt-8">
+            <h1 class="mb-5">Livre d'or de l'élite</h1>
+            <v-form>
+                <v-text-field
+                    v-model="comment.pseudo"
+                    label="Pseudo"
+                    required
+                ></v-text-field>
+
+                <v-text-field
+                    v-model="comment.message"
+                    label="Message"
+                    required
+                ></v-text-field>
+                <v-btn
+                    color="primary"
+                    @click="validate"
+                >
+                    Envoyer
+                </v-btn>
+            </v-form>
+            <div v-if="info !== ''" class="mt-8">
+                {{info}}
+            </div>
+        </div>
     </div>
     <AuthDut v-else/>
 
@@ -19,9 +44,17 @@ export default {
         return{
             accessDUTSection:localStorage.getItem('accessDUTSection'),
             videos:null,
+            comment:{
+                pseudo:'',
+                message:'',
+            },
+            info:'',
         }
     },
     methods:{
+        validate(){
+            this.info = "J'ai pas fait le back mdr"
+        },
         randomVideo(){
             const rand = Math.floor(Math.random() * this.videos.length)
             const anchor = document.createElement("a")
