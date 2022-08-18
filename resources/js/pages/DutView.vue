@@ -18,7 +18,19 @@ export default {
     data(){
         return{
             accessDUTSection:localStorage.getItem('accessDUTSection'),
-            videos:[
+            videos:null,
+        }
+    },
+    methods:{
+        randomVideo(){
+            const rand = Math.floor(Math.random() * this.videos.length)
+            const anchor = document.createElement("a")
+            anchor.href = this.videos[rand]
+            anchor.target = "_blank"
+            anchor.click()
+        },
+        populateVideos(){
+            this.videos = [
                 'https://www.youtube.com/watch/HX03oP3Sns4',
                 'https://www.youtube.com/watch/ZnqPjb4GBaU',
                 'https://www.youtube.com/watch/j-vw0UK2Ttc',
@@ -58,15 +70,11 @@ export default {
             ]
         }
     },
-    methods:{
-        randomVideo(){
-            const rand = Math.floor(Math.random() * this.videos.length)
-            const anchor = document.createElement("a")
-            anchor.href = this.videos[rand]
-            anchor.target = "_blank"
-            anchor.click()
+    mounted() {
+        if(this.accessDUTSection){
+            this.populateVideos()
         }
-    },
+    }
 }
 </script>
 

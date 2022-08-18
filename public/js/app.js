@@ -2247,7 +2247,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       accessDUTSection: localStorage.getItem('accessDUTSection'),
-      videos: {
+      videos: null
+    };
+  },
+  methods: {
+    populateVideos: function populateVideos() {
+      this.videos = {
         semestre4: [{
           id: 1,
           fullDate: 'Vendredi 05 février',
@@ -2610,8 +2615,13 @@ __webpack_require__.r(__webpack_exports__);
           duration: '13min 52s',
           yt: 'https://www.youtube.com/embed/4Vt-Gft4mVA'
         }]
-      }
-    };
+      };
+    }
+  },
+  mounted: function mounted() {
+    if (this.accessDUTSection) {
+      this.populateVideos();
+    }
   }
 });
 
@@ -2648,7 +2658,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       accessDUTSection: localStorage.getItem('accessDUTSection'),
-      videos: ['https://www.youtube.com/watch/HX03oP3Sns4', 'https://www.youtube.com/watch/ZnqPjb4GBaU', 'https://www.youtube.com/watch/j-vw0UK2Ttc', 'https://www.youtube.com/watch/ATgAHZ3tTH0', 'https://www.youtube.com/watch/YSev-ZWODNU', 'https://www.youtube.com/watch/SsBNrg5ebEU', 'https://www.youtube.com/watch/nFMASlFlMok', 'https://www.youtube.com/watch/K06IOuNWhWI', 'https://www.youtube.com/watch/nEZvNGmcMbk', 'https://www.youtube.com/watch/DPf-UVlN7Qc', 'https://www.youtube.com/watch/hZ1xYGpPv-U', 'https://www.youtube.com/watch/Dlbk0iZvPeo', 'https://www.youtube.com/watch/E-NutIwiZgE', 'https://www.youtube.com/watch/UvLHnP5Pso8', 'https://www.youtube.com/watch/pIcvhHwhyLk', 'https://www.youtube.com/watch/HQFA_J-vpxo', 'https://www.youtube.com/watch/qPf1FD1mm8U', 'https://www.youtube.com/watch/LBl1aqVE51s', 'https://www.youtube.com/watch/bttJNHagAno', 'https://www.youtube.com/watch/oekZlb51NUA', 'https://www.youtube.com/watch/V2-P4tHMeio', 'https://www.youtube.com/watch/Kg7YpfuX7io', 'https://www.youtube.com/watch/7GoWdcc6klM', 'https://www.youtube.com/watch/RsoAh0-KqRY', 'https://www.youtube.com/watch/OtotZPL3yWY', 'https://www.youtube.com/watch/vT3y-j5a1XQ', 'https://www.youtube.com/watch/QzJViTMN118', 'https://www.youtube.com/watch/eIWEBcwIN0s', 'https://www.youtube.com/watch/r2XL8Ow3_jU', 'https://www.youtube.com/watch/ILGTahZCJ4s', 'https://www.youtube.com/watch/6VKU5OMLO8A', 'https://www.youtube.com/watch/cLYxloBJXds', 'https://www.youtube.com/watch/6WC_HO9-bWo', 'https://www.youtube.com/watch/XPRpazSGSmY', 'https://www.youtube.com/watch/eRuzpQRMcrk', 'https://www.youtube.com/watch/4Vt-Gft4mVA']
+      videos: null
     };
   },
   methods: {
@@ -2658,6 +2668,14 @@ __webpack_require__.r(__webpack_exports__);
       anchor.href = this.videos[rand];
       anchor.target = "_blank";
       anchor.click();
+    },
+    populateVideos: function populateVideos() {
+      this.videos = ['https://www.youtube.com/watch/HX03oP3Sns4', 'https://www.youtube.com/watch/ZnqPjb4GBaU', 'https://www.youtube.com/watch/j-vw0UK2Ttc', 'https://www.youtube.com/watch/ATgAHZ3tTH0', 'https://www.youtube.com/watch/YSev-ZWODNU', 'https://www.youtube.com/watch/SsBNrg5ebEU', 'https://www.youtube.com/watch/nFMASlFlMok', 'https://www.youtube.com/watch/K06IOuNWhWI', 'https://www.youtube.com/watch/nEZvNGmcMbk', 'https://www.youtube.com/watch/DPf-UVlN7Qc', 'https://www.youtube.com/watch/hZ1xYGpPv-U', 'https://www.youtube.com/watch/Dlbk0iZvPeo', 'https://www.youtube.com/watch/E-NutIwiZgE', 'https://www.youtube.com/watch/UvLHnP5Pso8', 'https://www.youtube.com/watch/pIcvhHwhyLk', 'https://www.youtube.com/watch/HQFA_J-vpxo', 'https://www.youtube.com/watch/qPf1FD1mm8U', 'https://www.youtube.com/watch/LBl1aqVE51s', 'https://www.youtube.com/watch/bttJNHagAno', 'https://www.youtube.com/watch/oekZlb51NUA', 'https://www.youtube.com/watch/V2-P4tHMeio', 'https://www.youtube.com/watch/Kg7YpfuX7io', 'https://www.youtube.com/watch/7GoWdcc6klM', 'https://www.youtube.com/watch/RsoAh0-KqRY', 'https://www.youtube.com/watch/OtotZPL3yWY', 'https://www.youtube.com/watch/vT3y-j5a1XQ', 'https://www.youtube.com/watch/QzJViTMN118', 'https://www.youtube.com/watch/eIWEBcwIN0s', 'https://www.youtube.com/watch/r2XL8Ow3_jU', 'https://www.youtube.com/watch/ILGTahZCJ4s', 'https://www.youtube.com/watch/6VKU5OMLO8A', 'https://www.youtube.com/watch/cLYxloBJXds', 'https://www.youtube.com/watch/6WC_HO9-bWo', 'https://www.youtube.com/watch/XPRpazSGSmY', 'https://www.youtube.com/watch/eRuzpQRMcrk', 'https://www.youtube.com/watch/4Vt-Gft4mVA'];
+    }
+  },
+  mounted: function mounted() {
+    if (this.accessDUTSection) {
+      this.populateVideos();
     }
   }
 });
@@ -21540,7 +21558,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.accessDUTSection === "true"
+  return _vm.accessDUTSection === "true" && _vm.videos
     ? _c(
         "div",
         [

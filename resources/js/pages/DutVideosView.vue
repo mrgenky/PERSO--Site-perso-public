@@ -1,5 +1,5 @@
 <template>
-    <div v-if="accessDUTSection === 'true'">
+    <div v-if="accessDUTSection === 'true' && videos">
         <router-link :to="{name:'DUTinfo'}">Retour</router-link>
         <h1>Cours à distance</h1>
         <h2>Semestre 4</h2>
@@ -82,7 +82,12 @@ export default {
     data(){
         return{
             accessDUTSection:localStorage.getItem('accessDUTSection'),
-            videos:{
+            videos:null,
+        }
+    },
+    methods:{
+        populateVideos(){
+            this.videos = {
                 semestre4:[
                     {
                         id:1,
@@ -484,6 +489,11 @@ export default {
                     }
                 ]
             }
+        }
+    },
+    mounted() {
+        if(this.accessDUTSection){
+            this.populateVideos()
         }
     }
 }
