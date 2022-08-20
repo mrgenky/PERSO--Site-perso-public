@@ -2,7 +2,7 @@
     <v-card class="card-comment">
         <div class="author mb-1">
             <v-avatar size="25" class="mr-2">
-                <img src="https://connectingcouples.us/wp-content/uploads/2019/07/avatar-placeholder.png" alt="">
+                <img src="/img/avatar-placeholder.png" alt="">
             </v-avatar>
             {{comment.firstname}}
         </div>

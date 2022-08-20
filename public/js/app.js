@@ -21832,12 +21832,7 @@ var render = function () {
       { staticClass: "author mb-1" },
       [
         _c("v-avatar", { staticClass: "mr-2", attrs: { size: "25" } }, [
-          _c("img", {
-            attrs: {
-              src: "https://connectingcouples.us/wp-content/uploads/2019/07/avatar-placeholder.png",
-              alt: "",
-            },
-          }),
+          _c("img", { attrs: { src: "/img/avatar-placeholder.png", alt: "" } }),
         ]),
         _vm._v("\n        " + _vm._s(_vm.comment.firstname) + "\n    "),
       ],
