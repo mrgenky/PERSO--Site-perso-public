@@ -3,29 +3,41 @@
         <v-btn class="mb-3" color="primary" href="/iut/CoursDUTinfo.zip">Archive cours DUT (~300Mo)</v-btn>
         <v-btn class="mb-3" color="primary" :to="{ name:'DUTinfoVideos' }">Cours à distance</v-btn>
         <v-btn class="mb-3" @click="randomVideo()"><v-icon left>mdi-youtube</v-icon>Vidéo au hasard</v-btn>
-        <div style="max-width: 500px;" class="mt-8">
-            <h1 class="mb-5">Livre d'or de l'élite</h1>
-            <v-form>
+        <div style="max-width: 700px;" class="mt-8">
+            <h1 class="mb-5">Livre d'or de l'élite <v-chip v-if="comments" small>{{comments.length}}</v-chip></h1>
+            <v-form class="mb-10"
+            ref="form"
+            v-model="valid"
+            lazy-validation
+            @submit.prevent=""
+            >
                 <v-text-field
-                    v-model="comment.pseudo"
-                    label="Pseudo"
-                    required
+                v-model="comment.firstname"
+                label="Prénom"
+                :rules="requiredRule"
+                required
                 ></v-text-field>
-
-                <v-text-field
-                    v-model="comment.message"
-                    label="Message"
-                    required
-                ></v-text-field>
+                <v-textarea
+                v-model="comment.text"
+                label="Message"
+                :rules="requiredRule"
+                required
+                ></v-textarea>
                 <v-btn
-                    color="primary"
-                    @click="validate"
+                :disabled="!valid"
+                color="primary"
+                @click="sendComment"
                 >
                     Envoyer
                 </v-btn>
             </v-form>
-            <div v-if="info !== ''" class="mt-8">
-                {{info}}
+            <div v-if="comments">
+                <DutCommentCard
+                v-for="(comment,index) in comments"
+                :key="index"
+                :comment="comment"
+                class="mb-5"
+                />
             </div>
         </div>
     </div>
@@ -35,25 +47,39 @@
 
 <script>
 import AuthDut from "@/components/AuthDut";
+import DutCommentCard from "@/components/DutCommentCard";
 export default {
     name: "DutView",
     components:{
-        AuthDut
+        AuthDut,
+        DutCommentCard
     },
     data(){
         return{
             accessDUTSection:localStorage.getItem('accessDUTSection'),
             videos:null,
             comment:{
-                pseudo:'',
-                message:'',
+                firstname:'',
+                text:'',
             },
-            info:'',
+            comments:null,
+            valid: true,
+            requiredRule: [
+                v => !!v || 'Champ requis',
+            ],
         }
     },
     methods:{
-        validate(){
-            this.info = "J'ai pas fait le back mdr"
+        sendComment(){
+            if(this.$refs.form.validate()){
+                axios
+                    .post('/api/storeCommentaireDut', {'firstname': this.comment.firstname.trim(), 'text': this.comment.text.trim()})
+                    .then((response) => {
+                        this.$refs.form.reset()
+                        this.getCommentairesDut()
+                    })
+                    .catch((error) => console.log(error))
+            }
         },
         randomVideo(){
             const rand = Math.floor(Math.random() * this.videos.length)
@@ -101,11 +127,26 @@ export default {
                 'https://www.youtube.com/watch/eRuzpQRMcrk',
                 'https://www.youtube.com/watch/4Vt-Gft4mVA',
             ]
+        },
+        getCommentairesDut(){
+            axios
+                .get('/api/getCommentairesDut')
+                .then((response) => {
+                    this.comments = response.data.map((item) =>{
+                        return{
+                            firstname: item.firstname,
+                            text: item.text,
+                            created_at: new Intl.DateTimeFormat('fr-FR', {year: "numeric", month: "numeric", day: "numeric",hour: "numeric", minute: "numeric"}).format(new Date(item.created_at)),
+                        }
+                    })
+                })
+                .catch((error) => console.log(error))
         }
     },
     mounted() {
         if(this.accessDUTSection){
             this.populateVideos()
+            this.getCommentairesDut()
         }
     }
 }

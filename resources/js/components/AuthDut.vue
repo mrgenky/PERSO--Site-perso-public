@@ -20,7 +20,7 @@
         placeholder=" "
         persistent-placeholder
         />
-        <v-btn @click="openDUT">Valider</v-btn>
+        <v-btn @click="openDUT" color="primary">Valider</v-btn>
         <v-snackbar top v-model="snackbar" color="error">
             <v-icon left>mdi-alert-circle</v-icon>
             Pas bon

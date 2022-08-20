@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/getCommentairesDut', '\App\Http\Controllers\CommentaireDutController@getCommentaires')->name('get_commentaires_dut');
+Route::post('/storeCommentaireDut', '\App\Http\Controllers\CommentaireDutController@store')->name('store_commentaires_dut');
+Route::delete('/deleteCommentaireDut', '\App\Http\Controllers\CommentaireDutController@destroy')->name('delete_commentaires_dut');
