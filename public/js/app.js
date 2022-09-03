@@ -22292,9 +22292,7 @@ var render = function () {
         _vm._v(" "),
         _c("h1", [_vm._v("Mattéo Dufour")]),
         _vm._v(" "),
-        _c("div", { staticClass: "mb-1" }, [
-          _vm._v("ÉTUDIANT EN INFORMATIQUE"),
-        ]),
+        _c("div", { staticClass: "mb-1" }, [_vm._v("DÉVELOPPEUR WEB")]),
         _vm._v(" "),
         _c(
           "div",

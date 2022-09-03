@@ -11,7 +11,7 @@
                 </template>
             </v-img>
             <h1>Mattéo Dufour</h1>
-            <div class="mb-1">ÉTUDIANT EN INFORMATIQUE</div>
+            <div class="mb-1">DÉVELOPPEUR WEB</div>
             <div>
                 <v-btn href="https://www.linkedin.com/in/matt%C3%A9o-dufour/" icon>
                     <v-icon size="30">mdi-linkedin</v-icon>
